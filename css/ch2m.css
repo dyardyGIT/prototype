@@ -1,0 +1,992 @@
+body
+{
+    font: 0.80em arial, tahoma, verdana, sans-serif;
+    color: #252525;    
+}
+/*** Prevents Bootstrap from printing URL Paths after hyperlinks ***/
+@media print {
+
+    /* remove hyperlinks from print page. */
+    a[href]:after {
+     content: none;
+    }
+}
+
+
+/*** LINK STYLES ***/
+a:active
+{
+    color: #0076bf;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover, a:focus
+{
+    color: #003768;
+    text-decoration: none;
+}
+
+p a, p a:visited
+{
+    line-height: inherit;
+}
+
+span.reverse a:link, span.reverse a:visited
+{
+    color: #fff;
+}
+
+span.reverse a:hover
+{
+    color: #bcdaed;
+}
+/*** HEADING STYLES ***/
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
+{
+    font-weight: inherit;
+}
+
+h1
+{
+    margin-top: 1px;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    line-height: 100%;
+    color: #252525;
+    font-weight: 400;
+    text-align: left;
+}
+
+h2
+{
+    font-size: 1.3em;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    line-height: 100%;
+    color: #252525;
+    font-weight: 400;
+    text-align: left;
+}
+
+h3
+{
+    margin-top: 1px;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    line-height: 100%;
+    color: #252525;
+    text-align: left;
+}
+
+h4
+{
+    margin-top: 1px;
+    font-size: 11pt;
+    margin-bottom: 5px;
+    line-height: 100%;
+    color: #252525;
+}
+
+    h4.less
+    {
+        margin-top: 15px;
+        font-size: 12pt;
+        margin-bottom: 0;
+        line-height: 100%;
+    }
+
+h5
+{
+    margin-top: 1px;
+    font-size: 10pt;
+    margin-bottom: 0;
+    line-height: 100%;
+}
+
+h6
+{
+    font-weight: 400;
+    font-size: 8pt;
+    margin-bottom: 5px;
+    line-height: 110%;
+}
+/*** PARAGRAPH/CHARACTER STYLES ***/
+p
+{
+    margin: 0 0 20px;
+    line-height: 20px;
+}
+
+.small
+{
+    font-size: 80%;
+}
+
+.breadcrumb
+{
+    background-color: #fff;
+    margin: -7px 0 0 0;
+    font-size: 0.9em;
+    z-index: 0;
+    padding: 0 0 8px 0;
+}
+
+.question
+{
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.caption
+{
+    font-size: 80%;
+    color: gray;
+    line-height: 110%;
+}
+
+.caption_head
+{
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.caption_subhead
+{
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.globalTitle
+{
+    color: #363636;
+    font-weight: bold;
+    font-size: 17px;
+    font-family: Arial, Helvetica, Verdana, San-Serif;
+    padding: 5px 0 0 0;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.required
+{
+    color: #cc0000;
+    font-weight: bold;
+}
+
+strong, b
+{
+    font-weight: 700;
+    color: #252525;
+}
+
+.Subscribe
+{
+    font-size: 0.7em;
+    padding-left: 15px;
+}
+
+.help-block
+{
+    padding-left: 22px;
+}
+
+/*** BANNER STYLES ***/
+#banner
+{
+    margin: 0 0 10px 0;
+    padding: 0;
+    background-color: #0077c0;
+    height: 50px;
+}
+
+#bannerText
+{
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 11px;
+    color: #FFF;
+    font-weight: 700;
+}
+/*** LAYOUT STYLES ***/
+fieldset
+{
+    margin-bottom: 10px;
+    border: #ccc solid 1px;
+    padding: 5px 15px 15px;
+}
+
+legend
+{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #0976BD;
+    padding: 0 4px;
+    display: inline;
+    width: auto;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+    legend + .control-group
+    {
+        margin-top: 0;
+    }
+/*** TABLE STYLES ***/
+.table-noborder td
+{
+    border: none;
+}
+
+td.tablehead
+{
+    background-color: #a7a5a6;
+    color: #fff;
+}
+
+TH
+{
+    background-color: #ececec;
+    color: #252525;
+}
+
+table.tools
+{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.toolshead
+{
+    background-color: #616161;
+    color: #fff;
+    font-size: 1.0em;
+    font-weight: 700;
+    line-height: 110%;
+    padding: 5px 10px;
+}
+
+.toolsbody
+{
+    padding-left: 10px;
+    font-size: 1.0em;
+    font-family: Arial;
+    line-height: 110%;
+    padding-top: 10px;
+}
+/*  Defines standard TABLE HEADER style */
+td.tablehead
+{
+    background-color: #0077c0;
+    color: #fff;
+    font-weight: 700;
+    border: 0 0 1px 0;
+    font-size: 9pt;
+    text-align: center;
+    padding: 2px;
+}
+
+/*  Defines a standard TABLE CELL WITH a BORDER */
+td.tablebody
+{
+    border: 1px solid #ccc;
+    padding: 6px;
+    font-size: 9pt;
+}
+
+/*  Defines a standard TABLE CELL WITHOUT a BORDER */
+td.tablebody_noborder
+{
+    font-size: 9pt;
+    padding: 6px;
+}
+
+/*** FOOTER STYLES ***/
+#footer
+{
+    background-color: #ececec;
+    border: #c5c5c5 solid 1px;
+    padding-bottom: 7px;
+    margin-top: 12px;
+}
+
+.footerHead
+{
+    text-align: left;
+    margin: 10px 0 0 0px;
+    font-weight: bold;
+    border-bottom: 1px solid #cbcbcb;
+    font-size: .9em;
+}
+
+.footerHead2
+{
+    text-align: right;
+    margin: 10px 50px 0 0px;
+    font-weight: bold;
+}
+
+.footerlinks
+{
+    font-size: 0.85em;
+    color: #0076bf;
+    text-align: left;
+    height: 15px;
+    margin-left: 0px;
+    list-style: none;
+}
+
+.MyLinks
+{
+    overflow: auto;
+    min-height: 130px;
+    max-height: 300px;
+    margin-top: -20px;
+}
+
+div#footer a
+{
+    color: #0076bf;
+}
+
+div#footer LI
+{
+    line-height: 12px;
+    padding: 5px 0px;
+}
+
+.social
+{
+    float: right;
+    position: relative;
+    width: 250px;
+    bottom: 0;
+    margin: 0px 5px 5px 0;
+}
+
+
+
+/*** FORM STYLES ***/
+label, input, button, select, textarea
+{
+    font-size: 1.0em;
+    font-family: Arial, sans-serif;
+}
+
+.form-horizontal .control-label
+{
+    text-align: left;
+}
+
+.form-horizontal .control-group
+{
+    margin-bottom: 3px;
+}
+
+.btn
+{
+    border: 1px solid #808080;
+}
+
+
+.btn-link
+{
+    border: none;
+}
+
+
+.btn-primary:hover
+{
+    background-color: #4793cf;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f84ba', endColorstr='#50a3e4');
+}
+
+.btn-primary
+{
+    background-color: #0077c0;
+    *background-color: #0077c0;
+    background-image: -moz-linear-gradient(top, #0b77bf, #075e97);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0b77bf), to(#075e97));
+    background-image: -webkit-linear-gradient(top, #0b77bf, #075e97);
+    background-image: -o-linear-gradient(top, #0b77bf, #075e97);
+    background-image: linear-gradient(to bottom, #0b77bf, #075e97);
+    background-repeat: repeat-x;
+    border-color: #075e97 #075e97 #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b77bf', endColorstr='#075e97');
+}
+
+    .btn-primary:active,
+    .btn-primary.active,
+    .btn-primary.disabled,
+    .btn-primary.visited,
+    .btn-primary[disabled]
+    {
+        background-color: #0077c0;
+        *background-color: #0077c0;
+    }
+
+    .btn-primary + a:visited
+    {
+        color: #fff;
+    }
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{
+    font-size: 1.0em;
+}
+
+
+/*** SIDEBAR STYLES ***/
+/* Defines WIDTH of LEFT SIDEBAR */
+#sidebar_left_text
+{
+}
+
+/* Defines location and background color of LEFT SIDEBAR */
+.mC
+{
+    background-color: #fff;
+    margin: 0 0px 0 0;
+    padding: 0;
+}
+
+/* Defines TEXT and BACKGROUND color of LEFT SIDEBAR items */
+/* padding, alignment, height, and width changes made to .mH should be made to .mH_mouseover and .mH_mouseout */
+.mH
+{
+    color: #0076bf;
+    cursor: hand;
+    text-decoration: none;
+    text-align: left;
+    line-height: 100%;
+    font-weight: 700;
+    background-color: #e6f1f8;
+    border-bottom: 1px solid #fff;
+    padding: .7em 0 .7em 8px;
+    clear: both;
+}
+
+/* Defines TEXT and BACKGROUND color of LEFT SIDEBAR items on MOUSEOVER */
+.mH_mouseover
+{
+    color: #0076bf;
+    cursor: hand;
+    text-decoration: underline;
+    text-align: left;
+    line-height: 100%;
+    background-color: #e6f1f8;
+    border-bottom: 1px solid #fff;
+    padding: .7em 0 .7em 12px;
+}
+
+/* Defines text and background color of LEFT SIDEBAR items on MOUSEOUT */
+.mH_mouseout
+{
+    color: #0076bf;
+    cursor: hand;
+    text-decoration: none;
+    text-align: left;
+    line-height: 100%;
+    background-color: red;
+    border-bottom: 1px solid #fff;
+    padding: .7em 0 .7em 12px;
+}
+
+/* Defines text and background color of LEFT SIDEBAR items on MOUSE CLICK */
+.mH_mouseclick
+{
+    color: red;
+    cursor: hand;
+    text-decoration: none;
+    text-align: left;
+    line-height: 100%;
+    background-color: #e6f1f8;
+    padding: .9em 0 .25em 12px;
+}
+
+/* Defines text and background color of LEFT SIDEBAR SELECTED items on MOUSEOVER */
+.mH_selected_mouseover
+{
+    color: #000;
+    cursor: hand;
+    text-decoration: underline;
+    text-align: left;
+    line-height: 100%;
+    background-color: #d6e3eb;
+    border-bottom: 1px solid #fff;
+    padding: .7em 0 .7em 12px;
+}
+
+/* Defines text and background color of LEFT SIDEBAR SELECTED items on MOUSEOUT */
+.mH_selected, .mH_selected_mouseout
+{
+    color: #000;
+    cursor: hand;
+    text-decoration: none;
+    text-align: left;
+    line-height: 100%;
+    background-color: #d6e3eb;
+    border-bottom: 1px solid #fff;
+    padding: .7em 0 .7em 12px;
+}
+
+/* Defines LEFT SIDEBAR SELECTED items with submenu */
+.mOn
+{
+    color: #363636;
+    cursor: hand;
+    padding: .7em 0 .7em 12px;
+    text-decoration: none;
+    text-align: left;
+    line-height: 100%;
+    font-weight: 700;
+    text-decoration: underline;
+    background-color: #d6e3eb;
+    border-bottom: 1px solid #d6e3eb;
+}
+
+/*  Defines heading used in the sidebar to group and label a set of menu links */
+.sidebarhead_text
+{
+    color: #252525;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+/* FILESIZE TEXT SIZE when used on menu items ex.(Word, 3KB) */
+.menu_filesize
+{
+    font-size: .80em;
+}
+
+/*  Defines FILE TYPE TEXT size for documents */
+.filesize
+{
+    font-size: .70em;
+    color: #555;
+}
+
+/* Submenu Styles */
+/*  Defines SUBMENU DIV tag */
+.mL
+{
+    display: none;
+    margin-bottom: 1px;
+    border: solid 1px #d6e3eb;
+}
+
+/* Defines background color of SELECTED SUBMENU items */
+.mL_selected
+{
+    background-color: #d6e3eb;
+    display: block;
+    margin-bottom: 1px;
+    border-right: solid 1px #d6e3eb;
+}
+
+    /* Defines link color and text of SUBMENU LINKS */
+    .mL a:link, .mL a:visited, .mL_selected a:link, .mL_selected a:visited
+    {
+        color: #363636;
+        font-size: .85em;
+        text-decoration: none;
+    }
+
+    /* Defines link color and text of SUBMENU LINKS on MOUSEOVER */
+    .mL a:hover, .mL_selected a:hover
+    {
+        color: #363636;
+        font-size: .85em;
+        text-decoration: underline;
+    }
+
+/* Defines TEXT location SUBMENU */
+.mO
+{
+    text-align: left;
+    display: block;
+    background: #d6e3eb;
+    margin: 0;
+    padding: .15em 0 .15em 1em;
+}
+
+/*  INDENTS TEXT when wrapping to two lines on SUBMENU */
+.indent
+{
+    padding-left: 9px;
+}
+
+/*  Adds UNDERLINE to SUBMENU text on MOUSE-OVER */
+#menu0h:hover, #menu1h:hover, #menu2h:hover, #menu3h:hover, #menu4h:hover, #menu5h:hover, #menu6h:hover, #menu7h:hover, #menu8h:hover, #menu9h:hover, #menu10h:hover, #menu11h:hover, #menu12h:hover, #menu13h:hover, #menu14h:hover, #menu15h:hover, #Div1:hover
+{
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+
+/*  Defines the POSITION of BOOKMARK */
+#bookmark
+{
+    padding: 50px 0 0 5px;
+}
+
+/*  Defines the TEXT of BOOKMARK */
+.bookmark_text
+{
+    text-decoration: underline;
+    cursor: hand;
+    font-family: arial, tahoma, verdana sans-serif;
+    font-size: 8pt;
+    color: #0076bf;
+    vertical-align: top;
+}
+
+div#communities
+{
+    text-align: center;
+    padding: 15px 0 0 15px;
+}
+/*** RIGHT RAIL STYLES ***/
+div#sidebar_right
+{
+    float: right;
+    line-height: 20px;
+    height: 100%;
+    margin: 17px 0 0;
+    padding: 0;
+}
+
+.sidebar_right_head
+{
+    margin: 16px 0 0;
+    padding: 5px 0 4px 5px;
+    color: #000;
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #ededed;
+    border: solid 1px #d8d8d8;
+}
+
+.sidebar_right_head_contact
+{
+    margin: 0;
+    padding: 5px 0 4px 5px;
+    color: #000;
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #ededed;
+    border: solid 1px #d8d8d8;
+}
+
+div .Item
+{
+    line-height: 110%;
+    padding-top: 10px;
+    padding-left: 5px;
+    font-size: 0.85em;
+}
+
+p.sidebar_right_text
+{
+    margin: 0;
+    padding: 2px 0 20px 5px;
+}
+
+/*** VO PUBLISHER STORY STYLES ***/
+.posted
+{
+    color: gray;
+    font-style: italic;
+}
+
+.nHeadFullStory
+{
+    color: #000;
+    font-weight: 700;
+    line-height: 80%;
+}
+
+.nTDHead
+{
+    padding: 0 2px;
+    font-size: 0.9em;
+    line-height: 16px;
+}
+
+.nHead
+{
+    color: #252525;
+    font-weight: 700;
+}
+
+.nHeadLink:link, .nHeadLink:focus, .nHeadLink:active, .nHeadLink:visited
+{
+    cursor: pointer;
+    color: #252525;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nHeadLink:hover
+{
+    cursor: pointer;
+    color: #252525;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.nHeadHome:link, .nHeadHome:focus, .nHeadHome:active, .nHeadHome:visited, .nReadMore:link, .nReadM ore:focus, .nReadMore:active, .nReadMore:visited
+{
+    cursor: pointer;
+    color: #0076bf;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nHeadHome:hover, .nReadMore:hover
+{
+    cursor: pointer;
+    color: #0076bf;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.nHeadCampaign
+{
+    color: #252525;
+    font-family: arial, tahoma, verdana sans-serif;
+    font-weight: 700;
+}
+
+.tdImageNormal
+{
+    color: #252525;
+    width: 1%;
+    vertical-align: top;
+}
+
+.tdImageNotes, .tdImageCaptionNotes, .tdStoryNotes, .tdSummaryNotes
+{
+    color: #A0A0A0;
+}
+
+.tdStoryNormal
+{
+    width: 99%;
+}
+
+.tdSummaryNormal
+{
+    width: 99%;
+    vertical-align: top;
+}
+
+td.nTDSumm
+{
+    padding: 0 2px 15px;
+    font-size: 1.0em;
+    line-height: 16px;
+    color: #252525;
+}
+
+.nSumm
+{
+}
+
+.nLink
+{
+    cursor: pointer;
+    padding-bottom: 10px;
+    color: #0076bf;
+    text-decoration: underline;
+    font-size: 0.80em;
+}
+/* ----------------------------------------------------------------------------------------------------- */
+/*  CUSTOM MEDIA STYLES */
+/* ----------------------------------------------------------------------------------------------------- */
+@media (max-width: 1024px)
+{
+    .nav-tabs > li > a
+    {
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px)
+{
+
+    H3.sidebar_right_head, .sidebar_right_head_contact
+    {
+        background-image: none;
+    }
+
+    #sidebar_left_text
+    {
+        margin: 0;
+    }
+
+    .nav-tabs > li
+    {
+        font-size: .85em;
+    }
+
+        .nav-tabs > li > a
+        {
+            padding-right: 3px;
+            padding-left: 3px;
+        }
+
+    .navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a
+    {
+        color: #fff;
+    }
+
+    .navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu
+    {
+        background-color: gray;
+        z-index: 99;
+    }
+
+    #footer
+    {
+        height: 250px;
+    }
+
+    .social
+    {
+        top: 60px;
+    }
+     body {
+        padding: 0px 4px;
+    }
+}
+
+@media only screen and (max-width: 767px)
+{
+
+    H3.sidebar_right_head, .sidebar_right_head_contact
+    {
+        background-image: none;
+        margin-top: 20px;
+        padding: 3px;
+    }
+
+    table.communities
+    {
+        display: none;
+    }
+
+    #banner
+    {
+        height: 30px;
+    }
+
+    #bannerText
+    {
+        font-size: 16px;
+        padding-top: 6px;
+    }
+
+    #sidebar_left_text
+    {
+        margin: 0 0 8px 0;
+    }
+
+    #bookmark
+    {
+        display: none;
+    }
+
+    .nav-tabs > li > a, .nav-pills > li > a
+    {
+        padding-right: 6px;
+        padding-left: 6px;
+    }
+    body {
+        padding: 0px 4px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px)
+{
+    H3.sidebar_right_head, .sidebar_right_head_contact
+    {
+        background-image: none;
+        margin-top: 20px;
+        padding: 3px;
+    }
+
+    table.communities
+    {
+        display: none;
+    }
+
+    #banner
+    {
+        height: 30px;
+    }
+
+    #bannerText
+    {
+        font-size: 16px;
+        padding-top: 6px;
+    }
+
+    #sidebar_left_text
+    {
+        margin: 0 0 8px 0;
+    }
+    .flexslider
+    {
+        display: none;
+    }
+    #bookmark
+    {
+        display: none;
+    }
+
+    #footer_logo
+    {
+        display: none;
+    }
+
+    /*.nav-tabs > li
+    {
+        float: none;
+    }
+
+    .navbar .container
+    {
+        background: none;
+        margin-top:-20px;
+    }*/
+   body {
+        padding: 0px 4px;
+    }
+}
+
+@media (max-width: 480px)
+{
+    /*.nav-tabs > li
+    {
+        float: none;
+    }*/
+    .flexslider
+    {
+        display: none;
+    }
+    .footerHead2
+    {
+        margin-top: 0px;
+        text-align: left;
+    }
+    body {
+        padding: 2px;
+    }
+}

@@ -1,0 +1,498 @@
+﻿.nav-collapse in collapse {
+    z-index: 99;
+}
+
+/*.navbar {
+    min-width:235px;    
+    max-height: 31px;        
+    min-height: 31px;
+}
+    */
+.navbar-inner
+{    
+    min-height: 31px;
+    padding: 0;
+}
+
+
+.navbar-inverse .navbar-inner {
+    background: #2989d8; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI5ODlkOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwNzVlOTciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #2989d8 0%, #075e97 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2989d8), color-stop(100%,#075e97)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #2989d8 0%,#075e97 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #2989d8 0%,#075e97 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #2989d8 0%,#075e97 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #2989d8 0%,#075e97 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2989d8', endColorstr='#075e97',GradientType=0 ); /* IE6-8 */
+    border: none;    
+}
+
+.navbar-inverse .divider-vertical {
+    border-left: 1px solid #CCCCCC;
+    border-right: medium none;
+    height: 30px;
+}
+
+/* padding on menu items */
+.navbar .nav > li > a {
+    font-size: 14px;
+    padding: 5px 10px 8px;
+}
+
+/* color of text */
+.navbar-inverse .nav > li > a {
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+/* color of caret*/
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
+    border-bottom-color: #F3F3F3;
+    border-top-color: #F3F3F3;
+}
+
+/*menu mini button positioning start*/
+.navbar .btn-navbar {
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+
+.navbar .btn, .navbar .btn-group {
+    margin-top: 0px;
+}
+/*menu mini button positioning end*/
+
+.smallerfont {
+    font-size: 13px !important;
+}
+
+/* menu coloring start */
+.dropdown-menu {
+    background-color: #075E97;
+    padding: 10px 5px;
+}
+
+
+.dropdown-menu li > a {
+    color: #FFFFFF;
+    padding-left: 20px;
+}
+
+/* divider under title*/
+.dropdown-menu .divider {
+    background: none repeat scroll 0 0 transparent;
+    border-bottom: thin dotted #83AFCB;
+    height: 0;
+    margin: 2px 10px;
+}
+
+.dropdown-menu .divider2 {
+    background: none repeat scroll 0 0 transparent;
+    border-bottom: thin dotted #83AFCB;
+    height: 0;
+    margin: 2px 20px;
+}
+
+
+.dropdown .dropdown-menu .nav-header {
+    padding: 10px 0 0 10px;
+    color: #fff;
+}
+
+/* following controls if hover works on hover or click 
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}
+*/
+
+a.menu:after, .dropdown-toggle:after {
+    content: none;
+}
+
+.nav-header {
+    color: #F0F8FF;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+/* menu coloring end */
+
+/* set alert container size and opacity */
+#toast-container > div {
+    width: 300px;
+    opacity: 1.0;
+    font-size: .9em;
+}
+
+.btn-HR {
+    background-color: #009f93;
+    background-image: none;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: none;
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+.btn-HR:hover {
+    background-color: #009f93;
+    background-image: none;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: none;
+}
+
+.btn-HR a:active {
+    color: #fff;
+}
+
+.btn-DkGray {
+    background-color: #5c859f;
+    background-image: none;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: none;
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+.btn-DkGray:hover {
+    background-color: #8b898c;
+    background-image: none;
+    text-align: left;
+    color: #ffffff;
+}
+
+.btn-DkGray a:visited {
+    color: #fff;
+}
+
+/* top nav gray bar*/
+.graybar {
+    background-color: #ececec;
+    height: 24px;
+    font-size: 0.85em;
+    /*padding: 5px 0 3px 8px;*/
+    padding-top:2px;
+    padding-bottom:3px;
+}
+
+#searchalert {    
+    padding-right: 10px;    
+}
+
+.horizontalnavlinks ul {
+    margin: 0;    
+    list-style-type: none;    
+    padding-left:8px;    
+    padding-top:1px;
+}
+
+.horizontalnavlinks ul li {
+    display: inline;
+}
+
+.horizontalnavlinks li + li:before {
+    content: " | ";
+    padding: 0 10px;
+}
+
+.horizontalnavlinks a {
+    color: #0076bf;
+}
+
+#searchCriteria {
+    width: 110px;
+    margin: 0px;
+    font-size: 1em;
+    height: 15px;
+}
+
+.logo {
+    margin-bottom: 2px;
+    padding-left:20px;
+}
+/* top nav gray bar end*/
+
+
+.hiddenMenuItem {
+    display: none !important;
+}
+
+#alert {
+    vertical-align: top;
+    padding: 0 0 0 10px;
+}
+
+.colUL {
+    margin: 0px;
+}
+
+.con1 {
+}
+
+.con2 {
+    width: 460px;
+}
+
+.con3 {
+    width: 700px;
+}
+
+.col {
+    width: 220px;
+    float: left;
+}
+
+
+/* when menu is clicked this is the style for the active selected navbar item */
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+    /*background-color: #111111;*/
+    background: #2989d8; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI5ODlkOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwNzVlOTciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #2989d8 0%, #075e97 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2989d8), color-stop(100%,#075e97)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #2989d8 0%,#075e97 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #2989d8 0%,#075e97 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #2989d8 0%,#075e97 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #2989d8 0%,#075e97 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2989d8', endColorstr='#075e97',GradientType=0 ); /* IE6-8 */
+    border: none;
+    color: #FFFFFF;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+    .expando {
+        width: 870px;
+    }
+
+    .navbuttons {
+        width: 270px;
+    }
+
+    /* following controls if hover works on hover or click 
+    ul.nav li.dropdown:hover ul.dropdown-menu {
+        display: block;
+    }*/
+
+    #test {
+        background-color: yellow !important;
+    }
+}
+
+@media (min-width: 979px) and (max-width: 1200px) {
+
+    .expando {
+        width: 700px;
+    }
+
+    .navbuttons {
+        width: 220px;
+    }
+
+    /* following controls if hover works on hover or click 
+    ul.nav li.dropdown:hover ul.dropdown-menu {
+        display: block;
+    }*/
+
+}
+
+/* menu responsive behavior start*/
+@media (max-width: 979px) {
+
+.logo {    
+    padding-left:10px;
+}
+
+    .expando {
+        width: 100%;
+        /*margin-bottom: 10px;*/
+    }
+
+    .navbuttons {
+        display: none;
+    }
+
+    .dropdown-menu LI > A {
+        white-space: normal;
+    }
+
+    .nav-collapse .nav {
+        margin-bottom: 10px;
+        padding: 0;
+        z-index: 99;
+    }
+
+    .nav-tabs > li {
+        font-size: .85em;
+    }
+
+    .nav-collapse .nav .nav-header {
+        color: #fff !important;
+        text-shadow: none;
+        font-size: 1.1em;
+        font-weight: normal;
+    }
+
+    /*Second level dropdown background color*/
+
+    .navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse {
+        color: #fff !important;
+        text-decoration: none;
+        background-color: #019ae6;
+        background-repeat: repeat-x;
+    z-index: 99;
+    background-image: linear-gradient(to bottom,#019ae6,#0182c4);
+}
+
+    /*Second level dropdown mouse-over color*/
+    .navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse {
+        color: #fff;
+        text-decoration: none;
+        background-color: #0b76be;
+        background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom,#0b76be,#075e97);
+}
+
+    /*Second level selected background color */
+    .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+        color: #fff !important;
+        text-decoration: none;
+        background-color: #0b76be;
+        background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom,#0b76be,#075e97);
+}
+
+
+
+    /*Third level background color*/
+    .navbar-inverse .nav-collapse .dropdown-menu {
+        background-color: #075e97;
+        z-index: 99;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    /*Third level Dropdown mouse-over color*/
+    .nav-collapse .dropdown-menu a:link {
+        color: #fff;
+        font-weight: normal;
+    }
+
+    .nav-collapse .dropdown-menu a:hover {
+        color: #fff;
+        text-decoration: none;
+        background-color: #0087cb;
+        background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom,#0087cb,#0077b3);
+}
+
+    /*Style for open nav button*/
+    .navbar-inverse .btn-navbar {
+        color: #fff !important;
+        text-shadow: none;
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        margin-top: 2px;
+    }
+
+    /*Style for open nav button mouse over*/
+    .navbar-inverse .btn-navbar:hover {
+        color: #fff !important;
+        text-shadow: none;
+        background-color: #0081c1;
+        background-repeat: repeat-x;
+        border-color: #49b0e3;
+        margin-top: 2px;
+    background-image: linear-gradient(to bottom,#0081c1,#0079b5);
+}
+
+    /*
+    .dropdown-menu .divider2 {
+        display: none;
+    }
+    */    
+
+    .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+        padding: 3px 20px 3px 20px;
+    }
+
+
+    .nav-collapse .nav {
+        float: none;
+        margin: 2px 0 10px;
+    }
+
+    .col {
+        width: auto;
+        float: none;
+    }
+
+    /* color under collapsed menu, previously it was showing content*/
+    .nav-collapse{
+        background-color:white;
+    }
+    
+    }
+    
+/* Portrait tablet to landscape and desktop */
+/* @media (min-width: 768px) and (max-width: 979px) {} */
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+   .navbar {
+       margin-bottom:0px;
+   }
+    .col {
+        width: auto;
+        float: none;
+    }
+
+    /*.row {
+        background-color: red !important;
+    }*/
+}
+
+@media (max-width: 479px) {
+    
+    .navbar .nav > li > a {
+        font-size: .9em;
+        padding: 6px 4px 8px 5px;
+    }
+
+    .navbar-inverse .btn-navbar {
+        color: #fff !important;
+        text-shadow: none;
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        margin: 2px;
+    }
+
+    .col {
+        width: auto;
+        float: none;
+    }
+
+    #test {
+        background-color: pink !important;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    
+}
+
+.nav ul {
+    list-style-type: none;
+}
