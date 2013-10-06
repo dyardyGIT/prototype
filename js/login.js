@@ -18,7 +18,9 @@
 
     login.vm.dologin = function () {                
         var u = login.vm.username();
-        var p = login.vm.password();        
+        var p = login.vm.password();
+        alert(u + ' ' + p);
+        alert(app.server + "/Login/Auth?method=login&returnformat=json");
         if (u !== null && p !== null) {
             ajax(app.server + "/Login/Auth?method=login&returnformat=json", u, p, 'POST', {
                 context: this,
