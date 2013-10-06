@@ -16,6 +16,10 @@
         });        
     };
 
+    login.vm.exitApp = function () {
+        navigator.app.exitApp();
+    }
+
     login.vm.dologin = function () {                
         var u = login.vm.username();
         var p = login.vm.password();
