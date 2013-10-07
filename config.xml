@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "org.coenraets.prototype"
+        id          = "com.ch2mhill.prototype"
         versionCode = "10"
-        version     = "1.0.0">
+        version     = "1.9.0">
 
   <name>Prototype</name>
 
@@ -26,7 +26,7 @@
   
   
 
-  <!--<access origin="*" />--> 
-  <access origin="https://webappsdev.ch2m.com" subdomains="true"/>
+  <access origin="*" /> 
+  <!--<access origin="https://webappsdev.ch2m.com" subdomains="true"/>-->
   
 </widget>
