@@ -174,7 +174,8 @@ var app = {
         callback(token);        
     },
 
-    savelogin: function (u, p, callback) {        
+    savelogin: function (u, p, callback) {
+        alert('savelogin');
         this.store.save('username', u, function () { });
         this.store.save('password', p, function () { });
         this.loggedIn = true;

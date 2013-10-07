@@ -8,11 +8,11 @@
         type: methodType,
         dataType: 'json',
         beforeSend: function (xhr) {
-            var token = window.btoa(user + ':' + pass);            
+            var token = window.btoa(user + ':' + pass);
             xhr.setRequestHeader('Authorization', 'Basic ' + token);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            app.showAlert('Unable to communicate with server...' + url + textStatus + errorThrown, 'Prototype');
+            app.showAlert('Unable to communicate with server...' + url + textStatus + errorThrown, 'Contacts');
         },
         complete: function () {
             //$.mobile.loading('hide');
