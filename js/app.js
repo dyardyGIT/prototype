@@ -218,7 +218,8 @@ var app = {
         app.server = 'http://localhost/PrototypeBasic';
         //if (window.Cordova) {  
         if (window.cordova) {            
-            app.server = 'https://webappsdev.ch2m.com/Prototype';
+            //app.server = 'https://webappsdev.ch2m.com/Prototype';
+            app.server = 'https://webappsdev.ch2m.com/Directory';
         }
 
         this.store = new LocalStorageStore(function () {
