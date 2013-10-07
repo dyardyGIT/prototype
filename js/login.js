@@ -30,7 +30,7 @@
         if (u !== null && p !== null) {
             ajax(app.server + "/Login/Auth?method=login&returnformat=json", u, p, 'POST', {
                 context: this,
-                async: false,
+                async: true,
                 success: function () {
                     app.savelogin(u, p, function () {
                         login.vm.logOutVisible(true);
