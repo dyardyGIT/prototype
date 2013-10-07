@@ -24,21 +24,21 @@
         }
     }
 
-    login.vm.dologin = function () {                
+    login.vm.dologin = function () {
         var u = login.vm.username();
-        var p = login.vm.password();        
+        var p = login.vm.password();
         if (u !== null && p !== null) {
             ajax(app.server + "/Login/Auth?method=login&returnformat=json", u, p, 'POST', {
                 context: this,
-                async:false,
-                success: function () {                    
+                async: false,
+                success: function () {
                     app.savelogin(u, p, function () {
-                        login.vm.logOutVisible(true);                        
+                        login.vm.logOutVisible(true);
                         //location.href = '#/';
-                    });                    
+                    });
                 },
                 error: function () {
-                    app.showAlert('Username/Password incorrect. Server ' + app.server, 'Login');                    
+                    app.showAlert('Username/Password incorrect. Server ' + app.server, 'Login');
                     login.vm.logOutVisible(false);
                 }
             });
