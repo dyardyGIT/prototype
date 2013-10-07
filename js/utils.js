@@ -4,13 +4,10 @@
     //    textVisible: true
     //});
 
-    alert(user + ' ' + pass);
-
     var optionsIncludingAuthentication = {
         type: methodType,
         dataType: 'json',
         beforeSend: function (xhr) {
-
             var token = window.btoa(user + ':' + pass);            
             xhr.setRequestHeader('Authorization', 'Basic ' + token);
         },
