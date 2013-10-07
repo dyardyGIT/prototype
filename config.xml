@@ -27,6 +27,6 @@
   
 
   <!--<access origin="*" />--> 
-  <access origin="https://wwwtest.int.ch2m.com" subdomains="true"/>
+  <access origin="https://webappsdev.ch2m.com" subdomains="true"/>
   
 </widget>
