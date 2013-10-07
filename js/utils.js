@@ -8,7 +8,10 @@
         type: methodType,
         dataType: 'json',
         beforeSend: function (xhr) {
+
             var token = window.btoa(user + ':' + pass);
+            alert(token);
+            alert(url);
             xhr.setRequestHeader('Authorization', 'Basic ' + token);
         },
         error: function (jqXHR, textStatus, errorThrown) {
