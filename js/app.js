@@ -175,7 +175,7 @@ var app = {
     },
 
     savelogin: function (u, p, callback) {
-        alert('savelogin');
+        //alert('savelogin');
         this.store.save('username', u, function () { });
         this.store.save('password', p, function () { });
         this.loggedIn = true;
