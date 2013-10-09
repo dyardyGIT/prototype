@@ -31,7 +31,7 @@
             data: d,
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                alert('saved');
+                app.showAlert('Saved', 'Inspections');
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 app.showAlert('Error ' + textStatus, 'Prototype');
@@ -58,7 +58,7 @@
         var newItem = {
             "InspectionImages": [],
             "InspectionType": null,
-            "Location": null,
+            "Location": inspections.vm.locationId(),
             "InspectionId": -1,
             "LocationId": 1,
             "InspectionTypeId": 1,
@@ -67,7 +67,7 @@
             "Name": "Inspection Name",
             "Description": "",
             "DateModified": null,
-            "State": 1,
+            "State": 4,
             "MapUrl": '',
             "LatLng":''
         }
@@ -80,7 +80,10 @@
 
     inspections.vm.remove = function (item) {        
         //inspections.vm.items.remove(item);        
+        item.State(8);
         item.Removed(true);
+        item.Modified(true);
+        
         inspections.vm.selectedInspection(null);
     };
 
@@ -183,6 +186,7 @@
 
     inspections.vm.getCurrentPosition = function () {        
         navigator.geolocation.getCurrentPosition(onGeolocationSuccess, onGeolocationError);
+
     }
 
     //=======================Geolocation Operations=======================//
@@ -212,7 +216,7 @@
         current.LatLng(latlng.lb + '|' + latlng.mb);
         current.MapUrl(googleApis_map_Url);
         current.Modified(true);
-
+        
     }
 
     // onGeolocationError Callback receives a PositionError object
