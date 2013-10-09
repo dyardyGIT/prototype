@@ -28,8 +28,7 @@
                                 <img src="img/VOLogoWhite_Sm.png" alt="CH2M HILL" border="0" class="logo" /></a>
                             <div class="hidden-desktop">
                                 <ul class="nav nav-pills">
-                                    <li class="active1"><a href="#/">Locations</a></li>
-                                    <!--<li><a href="#/office">Office</a></li>-->
+                                    <li class="active1"><a href="#/">Locations</a></li>                                    
                                 </ul>
                             </div>
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -39,10 +38,7 @@
                             </a>
                             <div class="nav-collapse collapse">
                                 <ul class="nav">
-                                    <li class="active1"><a href="#/">Locations</a></li>
-                                    <!--<li><a href="#/office">Office</a></li>
-                                    <li><a href="#/support">Support</a></li>
-                                    <li><a href="#/emergency">Emergency</a></li>-->
+                                    <li class="active1"><a href="#/">Locations</a></li>                                    
                                     <li><a href="#/login">Account-Login</a></li>
                                 </ul>
                             </div>
@@ -98,19 +94,7 @@
 
                             <h4>Locations</h4>
 
-<!--                            <div class="control-group">
-                                <label class="control-label" for="id_searchstring"></label>
-                                <div class="controls">
-                                    <select data-bind="options:locations" size="5"></select>                                    
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <button class="btn btn-primary" data-bind="click: getLocationsJson">Search</button>
-                                </div>
-                            </div>
 
-                            <br />-->
                         </div>
 
                     </div>
@@ -172,7 +156,10 @@
                             <h4>Inspections</h4>
                         </div>
                         <div class="span9">
+                            <button class="btn btn-primary btn-small pull-right" style="margin-left:10px;" data-bind="click: $root.save">Save</button>
+                            
                             <button class="btn btn-primary btn-small pull-right" data-bind="click: addNew">Add New</button>
+                            
                         </div>
                     </div>
 
@@ -192,6 +179,20 @@
                                     <div class="form-horizontal" data-bind="with: selectedInspection">
 
                                         <div class="control-group">
+                                            <label class="control-label" for="id_Name">Name</label>
+                                            <div class="controls">
+                                                <input name="id_Name" type="text" class="input-large" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
+                                                <button class="btn btn-primary btn-small" data-bind="click: $parent.remove">Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="id_Description">Description</label>
+                                            <div class="controls">
+                                                <input name="id_Description" type="text" class="input-large" data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
                                             <label class="control-label" for="id_Latitude">Latitude</label>
                                             <div class="controls">
                                                 <input name="id_Latitude" type="text" class="input-large" data-bind="value: Latitude, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
@@ -203,18 +204,7 @@
                                                 <input name="id_Longitude" type="text" class="input-large" data-bind="value: Longitude, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
                                             </div>
                                         </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="id_Name">Name</label>
-                                            <div class="controls">
-                                                <input name="id_Name" type="text" class="input-large" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="id_Description">Description</label>
-                                            <div class="controls">
-                                                <input name="id_Description" type="text" class="input-large" data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />
-                                            </div>
-                                        </div>
+                                        
 
                                         <div class="control-group">
                                             <label class="control-label">Geolocation</label>                                            
@@ -232,19 +222,22 @@
                                                 <div id="Div1"></div>
                                                 <div id="Div2"></div>
                                             </div>
-                                        </div>
-
-
+                                        </div>    
                                         <div class="control-group">
-                                            <div class="controls"> 
-                                                <button class="btn btn-primary btn-small" data-bind="click: $parent.save">Save</button>
-                                                <button class="btn btn-primary btn-small" data-bind="click: $parent.remove">Remove</button>
+                                            <label class="control-label">Picture 2</label>
+                                            <div class="controls">
+                                              <button class="btn btn-primary btn-mini addBottomMargin" data-bind="click: $parent.capturePhoto">Picture 1</button>
+                                            </div>
+                                        </div>                                                       
+                                    </div>
+                                    <div class="form-horizontal">
+                                        <div class="control-group">                                     
+                                            <div class="controls">                                     
                                             </div>
                                         </div>
-                                    </div>
-
+                                    </div>                                    
                                 </div>
-                            </div>   
+                            </div>                               
                         </div>
               
                     </div>

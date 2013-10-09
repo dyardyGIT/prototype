@@ -148,6 +148,54 @@
         inspections.vm.selectedInspection(inspection);                     
     };
 
+
+
+
+
+    inspections.vm.capturePhoto = function () {
+        try {
+            navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                quality: 50,
+                destinationType: destinationType.FILE_URI
+            });
+
+        } catch (exc) {
+            alert(exc.message);
+        }
+    };
+
+    function onPhotoURISuccess(imageURI) {
+        //var msg = document.getElementById('msg');
+        //msg.innerText = 'got the image URI: ' + imageURI + ' attempting to upload ...';
+        try {
+            var options = new FileUploadOptions();
+            options.fileKey = 'file';
+            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+            options.mimeType = 'image/jpeg';
+
+            var params = new Object();
+            params.value1 = 'test';
+            params.value2 = 'param';
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, 'http://ipaddressofmycomputer/File/UploadFile', win, fail, options);
+            //msg.innerText = 'upload complete';
+        } catch (err) {
+            //var msg = document.getElementById('msg');
+            //msg.innerText = 'error from catch: ' + err;
+        }
+    };
+
+    function onFail(message) {
+        var msg = document.getElementById('msg');
+        alert('Failed because: ' + message);
+    }
+
+
+    /////
+
     inspections.vm.getPicture = function () {
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto,
