@@ -181,10 +181,10 @@
 
             var newImg = {
                 "ImageId": -1,
-                "InspectionId":  inspections.vm.selectedInspection.InspectionId(),
+                "InspectionId": inspections.vm.selectedInspection.InspectionId(),
                 "CameraImage": imageData
             };
-            
+
             inspections.vm.selectedInspection.Modified(true);
             inspections.vm.selectedInspection.InspectionImages.push(newImg);
 
