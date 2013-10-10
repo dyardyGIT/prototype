@@ -66,7 +66,8 @@ var app = {
     initialize: function () {
         var self = this;
 
-        app.server = 'http://localhost/PrototypeBasic';        
+        //app.server = 'http://localhost/PrototypeBasic';        
+        app.server = 'http://10.0.2.2'
         //if (window.cordova) {            
         //    app.server = 'https://webappsdev.ch2m.com/Prototype';
         //    //app.server = 'https://webappsdev.ch2m.com/Directory';
