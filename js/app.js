@@ -1,147 +1,3 @@
-//var app = {
-
-//    findByName: function() {
-//        console.log('findByName');
-//        this.store.findByName($('.search-key').val(), function(employees) {
-//            var l = employees.length;
-//            var e;
-//            $('.employee-list').empty();
-//            for (var i=0; i<l; i++) {
-//                e = employees[i];
-//                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-//            }
-//        });
-//    },
-
-//    showAlert: function (message, title) {
-//        if (navigator.notification) {
-//            navigator.notification.alert(message, null, title, 'OK');
-//        } else {
-//            alert(title ? (title + ": " + message) : message);
-//        }
-//    },
-
-//    initialize: function() {
-//        var self = this;
-
-//        //if (window.cordova) { //we're in phonegap
-//        //    //navigator.notification.alert("window.cordova", null, "Info", 'OK');
-//        //    navigator.notification.alert("PhoneGap is working");
-//        //} else {
-//        //    alert("not cordova");
-//        //}
-
-//        //this.store = new MemoryStore(function() {
-//        //    self.showAlert('Store Initialized', 'Info');
-//        //});
-
-//        this.store = new LocalStorageStore(function() {
-//            //self.showAlert('Store Initialized', 'Info');
-//        });
-
-//        $('.search-key').on('keyup', $.proxy(this.findByName, this));
-//    }
-
-
-
-//};
-
-////Start Up
-////app.initialize();
-
-
-//if (window.cordova) {
-//    $('#msg').html('cordova');
-//    document.addEventListener("deviceready", onDeviceReady, false);
-//} else {
-//    //alert('hi');
-//    $(document).ready(function () {
-//        $('#msg').html('no cordova');
-//        app.initialize();
-//    });
-
-//}
-//function onDeviceReady() {
-//    if (window.cordova) {
-//        app.initialize();
-//    }
-//}
-
-
-//var app = {
-
-//    findByName: function () {        
-//        console.log('findByName');
-//        this.store.findByName($('.search-key').val(), function (employees) {
-//            var l = employees.length;
-//            var e;
-//            $('.employee-list').empty();
-//            for (var i = 0; i < l; i++) {
-//                e = employees[i];
-//                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-//            }
-//        });
-//    },
-
-//    showAlert: function (message, title) {
-//        if (navigator.notification) {
-//            message += ' navigator.notification';
-//            navigator.notification.alert(message, null, title, 'OK');
-
-//            if (window.cordova) {
-//                navigator.notification.alert("cordova", null, title, 'OK');
-//            }
-
-
-//        } else {
-//            if (window.cordova){
-//                message += " with cordova";
-//            }else {
-//                message += " no cordova";
-//            }
-            
-//            alert(title ? (title + "A: " + message) : message);
-//        }
-//    },
-
-//    initialize: function () {
-//        var self = this;
-//        //this.store = new MemoryStore();
-//        this.store = new LocalStorageStore(
-//            function () {
-//                self.showAlert('Store Initialized', 'Info');
-//            }
-//        );
-//        $('.search-key').on('keyup', $.proxy(this.findByName, this));
-//    }
-
-//};
-
-////app.initialize();
-
-//$(document).ready(function () {
-
-//    if (window.cordova) {
-//        $('#msg').html('cordova');
-//        document.addEventListener("deviceready", onDeviceReady, false);
-//    } else {
-
-//        $('#msg').html('no cordova');
-//        app.initialize();
-
-//    };
-
-//});
-
-
-//function onDeviceReady() {
-//    if (window.cordova) {
-//        alert('hi1');
-//        app.initialize();
-//    }
-//}
-
-
 var app = {
     server: '',
     loggedIn: false,
@@ -156,12 +12,7 @@ var app = {
         if ((user !== "null" && user !== undefined) && (pass !== "null" && pass !== undefined)) {
             this.username = user;
             this.password = pass;
-
             autoLogin(user, pass);
-
-            //app.savelogin(user, pass, function () {                
-            //    login.vm.logOutVisible(true);
-            //});
         }        
     },
 
@@ -174,8 +25,7 @@ var app = {
         callback(token);        
     },
 
-    savelogin: function (u, p, callback) {
-        //alert('savelogin');
+    savelogin: function (u, p, callback) {        
         this.store.save('username', u, function () { });
         this.store.save('password', p, function () { });
         this.loggedIn = true;
@@ -216,12 +66,11 @@ var app = {
     initialize: function () {
         var self = this;
 
-        app.server = 'http://localhost/PrototypeBasic';
-        //if (window.Cordova) {  
-        if (window.cordova) {            
-            app.server = 'https://webappsdev.ch2m.com/Prototype';
-            //app.server = 'https://webappsdev.ch2m.com/Directory';
-        }
+        app.server = 'http://localhost/PrototypeBasic';        
+        //if (window.cordova) {            
+        //    app.server = 'https://webappsdev.ch2m.com/Prototype';
+        //    //app.server = 'https://webappsdev.ch2m.com/Directory';
+        //}
 
         this.store = new LocalStorageStore(function () {
             //self.showAlert('Store Initialized', 'Info');
