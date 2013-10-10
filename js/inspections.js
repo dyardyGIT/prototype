@@ -78,16 +78,12 @@
         inspections.vm.selectedInspection(recentlyAddedItem);
     };
 
-    inspections.vm.remove = function (item) {        
-        //inspections.vm.items.remove(item);        
+    inspections.vm.remove = function (item) {                
         item.State(8);
         item.Removed(true);
-        item.Modified(true);
-        
+        item.Modified(true);        
         inspections.vm.selectedInspection(null);
     };
-
-
 
     var mapping = {
         create: function (options) {            
@@ -154,9 +150,11 @@
 
     inspections.vm.capturePhoto = function () {
         try {
+            //http://docs.phonegap.com/en/2.9.0/cordova_camera_camera.md.html
+            //navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
             navigator.camera.getPicture(onPhotoURISuccess, onFail, {
                 quality: 50,
-                destinationType: destinationType.FILE_URI
+                destinationType: Camera.DestinationType.DATA_URL 
             });
 
         } catch (exc) {
@@ -164,49 +162,52 @@
         }
     };
 
-    function onPhotoURISuccess(imageURI) {
-        //var msg = document.getElementById('msg');
-        //msg.innerText = 'got the image URI: ' + imageURI + ' attempting to upload ...';
-        try {
-            var options = new FileUploadOptions();
-            options.fileKey = 'file';
-            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-            options.mimeType = 'image/jpeg';
+    function onPhotoURISuccess(imageData) {
+        var image = document.getElementById('myImage');
+        image.src = "data:image/jpeg;base64," + imageData;
+    }
 
-            var params = new Object();
-            params.value1 = 'test';
-            params.value2 = 'param';
+    //function onPhotoURISuccess(imageURI) {
+    //    //var msg = document.getElementById('msg');
+    //    //msg.innerText = 'got the image URI: ' + imageURI + ' attempting to upload ...';
+    //    try {
+    //        var options = new FileUploadOptions();
+    //        options.fileKey = 'file';
+    //        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+    //        options.mimeType = 'image/jpeg';
 
-            options.params = params;
+    //        var params = new Object();
+    //        params.value1 = 'test';
+    //        params.value2 = 'param';
 
-            var ft = new FileTransfer();
-            ft.upload(imageURI, 'http://ipaddressofmycomputer/File/UploadFile', win, fail, options);
-            //msg.innerText = 'upload complete';
-        } catch (err) {
-            //var msg = document.getElementById('msg');
-            //msg.innerText = 'error from catch: ' + err;
-        }
-    };
+    //        options.params = params;
 
-    function onFail(message) {
-        var msg = document.getElementById('msg');
+    //        var ft = new FileTransfer();
+    //        ft.upload(imageURI, 'http://ipaddressofmycomputer/File/UploadFile', win, fail, options);
+    //        //msg.innerText = 'upload complete';
+    //    } catch (err) {
+    //        //var msg = document.getElementById('msg');
+    //        //msg.innerText = 'error from catch: ' + err;
+    //    }
+    //};
+
+    function onFail(message) {        
         alert('Failed because: ' + message);
     }
 
 
-    /////
-
-    inspections.vm.getPicture = function () {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto,
-                                        function (message) { alert('get picture failed'); },
-                                        {
-                                            quality: 50,
-                                            destinationType: navigator.camera.DestinationType.FILE_URI,
-                                            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-                                        }
-                                    );
-    };
+    ////
+    //inspections.vm.getPicture = function () {
+    //    // Retrieve image file location from specified source
+    //    navigator.camera.getPicture(uploadPhoto,
+    //                                    function (message) { alert('get picture failed'); },
+    //                                    {
+    //                                        quality: 50,
+    //                                        destinationType: navigator.camera.DestinationType.FILE_URI,
+    //                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+    //                                    }
+    //                                );
+    //};
 
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();

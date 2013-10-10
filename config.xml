@@ -23,8 +23,8 @@
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/notification"/>
 
-  
-  
+
+  <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 
   <access origin="*" /> 
   <!--<access origin="https://webappsdev.ch2m.com" subdomains="true"/>-->
