@@ -163,8 +163,22 @@
     };
 
     function onPhotoURISuccess(imageData) {
-        var image = document.getElementById('myImage');
-        image.src = "data:image/jpeg;base64," + imageData;
+        try{
+            var image = document.getElementById('myImage');
+            image.src = "data:image/jpeg;base64," + imageData;
+
+            var newImg = {
+                "ImageId": -1,
+                "InspectionId":  inspections.vm.selectedInspection.InspectionId(),
+                "CameraImage": imageData
+            };
+            
+            inspections.vm.selectedInspection.Modified(true);
+            inspections.vm.selectedInspection.InspectionImages.push(newImg);
+
+        } catch (ex) {
+            alert('problem on success of picture');
+        }
     }
 
     //function onPhotoURISuccess(imageURI) {
