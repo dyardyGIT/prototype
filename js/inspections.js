@@ -197,8 +197,8 @@
                 "ImageString": imageData
             };
 
-            item.Modified(true);
-            item.InspectionImages.push(newImg);
+            //item.Modified(true);
+            //item.InspectionImages.push(newImg);
 
         } catch (ex) {
             alert('problem on success of picture');
