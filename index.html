@@ -8,6 +8,7 @@
     <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
     
+    
     <link href="css/menu.css" rel="stylesheet" />
     <link href="css/ch2m.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
@@ -112,30 +113,31 @@
                         </div>
 
                         <div class="span12" id="locations">
-                            <!-- ko template: { name: 'names' , foreach: items } -->
-                            <!-- /ko -->
+
+                            <table class="table table-condensed table-hover">
+                                <caption></caption>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                  <tbody data-bind="template: { name: 'names', foreach: items }">                                   
+                            </table>
+
+
                             <div data-bind="text: msg"></div>
                         </div>
 
                         <script id="names" type="text/html">
-                            <div class="row">
-                                <div class="span12">
-                                    <div class="row">
-                                        <div class="span3">
-                                            <div class="" data-bind="html: LocationName"></div>
-                                        </div>
-                                        <div class="span3">
-                                            <div class="" data-bind="html: Description"></div>
-                                        </div>
-                                        <div class="span3">                                            
-                                            <div class="" data-bind="date: DateModified"></div>
-                                        </div>
-                                        <div class="span3">
-                                            <a href="#" data-bind="click: $root.selectLocation">Review</a>
-                                        </div>
-                                    </div>                                
-                                </div>                            
-                            </div>
+                            <tr>
+                                <td data-bind="text: LocationName"></td>
+                                <td data-bind="text: Description"></td>
+                                <td data-bind="date: DateModified"></td>
+                                <td>
+                                    <a href="#" data-bind="click: $root.selectLocation">Review</a>
+                                </td>
+                            </tr>
                         </script>
                     </div>                    
                 </section>
@@ -153,7 +155,7 @@
                                 <h4>Inspections</h4>
                             </div>
                             <div class="span9">
-                                <button class="btn btn-primary btn-mini pull-right" data-bind="click: addNew">Add New Inspection</button>                            
+
                             </div>
                         </div>
                     
@@ -163,17 +165,30 @@
                             <div class="row">
                                 <div class="span3">
                                     <div class="row">
-                                        <div class="span3 inspectionlist">
+                                        <div class="span3 inspectionlist1">
                                             <div id="inspectionlist">
-                                                <ul data-bind="foreach: activeItems">
-                                                    <li data-bind="text: Name, click: $parent.selectInspection"></li>
+                                                <ul class="nav nav-tabs nav-stacked" data-bind="foreach: activeItems">
+                                                    <!--<li data-bind="text: Name, click: $parent.selectInspection"></li>-->
+                                                    <li class="font10"><a href="#"><span data-bind="text: Name, click: $parent.selectInspection"></span></a></li>
                                                 </ul>
                                             </div>
+
+                                            <!--<ul class="nav nav-tabs nav-stacked">
+                                                <li class="active"><a href="#">Home</a></li>
+                                                <li><a href="#">Profile</a></li>
+                                                <li><a href="#">Messages</a></li>
+                                            </ul>-->
+
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="span3">
-                                            <button class="btn btn-primary btn-mini pull-right addTopMargin" style="margin-left:10px;" data-bind="click: $root.save">Save Changes</button>
+                                            <div class="addTopMargin">
+                                                <button class="btn btn-primary btn-mini pull-right" style="margin-left: 10px;margin-bottom:10px;" data-bind="click: $root.save">Save Changes</button>
+                                                <button class="btn btn-primary btn-mini pull-right" data-bind="click: addNew">Add New Inspection</button>
+                                                
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -184,13 +199,13 @@
                                         <div class="control-group">
                                             <label class="control-label" for="id_Name">Name</label>
                                             <div class="controls">
-                                                <input name="id_Name" type="text" class="input-large" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />                                                
+                                                <input name="id_Name" type="text" class="input-xlarge" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />                                                
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="id_Description">Description</label>
                                             <div class="controls">                                                
-                                                <textarea rows="4" placeholder="Enter Description" class="field"  data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }"></textarea>
+                                                <textarea rows="4" placeholder="Enter Description" class="input-xlarge"  data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }"></textarea>
                                             </div>
                                         </div>
 
@@ -223,7 +238,7 @@
                                         <div class="control-group">                                            
                                             <div class="controls">
                                                 <br />
-                                                <button class="btn btn-mini" data-bind="click: $parent.remove">Remove Inspection</button>    
+                                                <button class="btn btn-mini btn-primary" data-bind="click: $parent.remove">Remove Inspection</button>    
                                             </div>
                                         </div>
                                         <div class="form-horizontal">
@@ -280,8 +295,6 @@
                     
                     <div class="row">
                         <div class="span12">
-
-                            <h4>Support</h4>
 
 
                             <div class="span12" style="display: none;" id="loadingWindowSupport">
@@ -362,7 +375,6 @@
                     <div class="row">
                         <div class="span12">
 
-                            <h4>Emergency</h4>
 
                             <div class="span12" style="display: none;" id="loadingWindowEmergency">
                                 <div class="text-center" style="width: 275px;">
