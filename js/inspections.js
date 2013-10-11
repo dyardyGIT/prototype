@@ -185,12 +185,11 @@
 
     function onPhotoURISuccess(imageData) {
         try{
-            var image = document.getElementById('myImage');
-            image.src = "data:image/jpeg;base64," + imageData;
+            //var image = document.getElementById('myImage');
+            //image.src = "data:image/jpeg;base64," + imageData;
 
             var item = inspections.vm.selectedInspection();
-            alert(item.InspectionId());
-
+            
             var newImg = {
                 "ImageId": -1,
                 "InspectionId": item.InspectionId(),
