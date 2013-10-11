@@ -7,8 +7,8 @@ var app = {
 
     getAccount: function(){
         var user, pass;
-        this.store.get('username', function (data) { user = data });
-        this.store.get('password', function (data) { pass = data });
+        this.store.get('username', function (data) { user = data; });
+        this.store.get('password', function (data) { pass = data; });
         if ((user !== "null" && user !== undefined) && (pass !== "null" && pass !== undefined)) {
             this.username = user;
             this.password = pass;

@@ -215,7 +215,10 @@
                                         <div class="control-group">
                                             <label class="control-label">Image</label>
                                             <div class="controls">
-                                              <img id="myImage" src="" />
+                                              <div data-bind="foreach: InspectionImages">
+                                                  <!--<div data-bind="html: ImageString"></div>-->
+                                                    <img id="myImage" height="60" width="60" data-bind="attr: { src: 'data:image/png;base64,' + ImageString() }" />
+                                               </div>
                                             </div>
                                         </div>   
                                         <div class="form-horizontal">
@@ -234,7 +237,7 @@
                     </div>
                     <br />
                     <!--<h2>Debug</h2><pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->
-                    <pre data-bind="text: JSON.stringify(ko.toJS($data), null, 3)"></pre>
+                    <!--<pre data-bind="text: JSON.stringify(ko.toJS($data), null, 3)"></pre>-->
             </section>
 
                  <!--   <div class="row">       
