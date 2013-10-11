@@ -187,15 +187,18 @@
             var image = document.getElementById('myImage');
             image.src = "data:image/jpeg;base64," + imageData;
 
+            var item = inspections.vm.selectedInspection();
+            alert(item.InspectionId());
+
             var newImg = {
                 "ImageId": -1,
-                "InspectionId": inspections.vm.selectedInspection.InspectionId(),
+                "InspectionId": item.InspectionId(),
                 "CameraImage": '',
                 "ImageString": imageData
             };
 
-            inspections.vm.selectedInspection.Modified(true);
-            inspections.vm.selectedInspection.InspectionImages.push(newImg);
+            item.Modified(true);
+            item.InspectionImages.push(newImg);
 
         } catch (ex) {
             alert('problem on success of picture');
