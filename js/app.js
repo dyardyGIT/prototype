@@ -66,12 +66,12 @@ var app = {
     initialize: function () {
         var self = this;
 
-        //app.server = 'http://localhost/PrototypeBasic';        
-        app.server = 'http://10.0.2.2/PrototypeBasic'
-        //if (window.cordova) {            
-        //    app.server = 'https://webappsdev.ch2m.com/Prototype';
-        //    //app.server = 'https://webappsdev.ch2m.com/Directory';
-        //}
+        app.server = 'http://localhost/PrototypeBasic';        
+        //app.server = 'http://10.0.2.2/PrototypeBasic'
+        if (window.cordova) {            
+            app.server = 'https://webappsdev.ch2m.com/Prototype';
+            //app.server = 'https://webappsdev.ch2m.com/Directory';
+        }
 
         this.store = new LocalStorageStore(function () {
             //self.showAlert('Store Initialized', 'Info');
