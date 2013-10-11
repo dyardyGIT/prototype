@@ -197,7 +197,7 @@
                 "ImageString": imageData
             };
 
-            //item.Modified(true);
+            item.Modified(true);
             //item.InspectionImages.push(newImg);
 
         } catch (ex) {
