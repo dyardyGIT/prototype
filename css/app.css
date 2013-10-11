@@ -93,3 +93,13 @@ h4{
 .addBottomMargin{
     margin-bottom:5px;
 }
+
+.addTopMargin{
+    margin-top:5px;
+}
+
+.inspectionlist{
+    border:1px solid whitesmoke;
+    height:100%;
+
+}

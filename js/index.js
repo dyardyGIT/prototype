@@ -16,8 +16,7 @@
     //http://jsfiddle.net/jearles/RN9Dw/
 
     index.vm.getLocationsJson = function () {
-            //$('#employees').hide();
-            //$('#noresults').hide();
+            
             $('#loadingWindowLocations').show();
                         
             //var search = { lastName: index.vm.searchstring() };            

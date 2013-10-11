@@ -66,6 +66,15 @@ var autoLogin = function (user, pass) {
     };
 };
 
+
+ko.bindingHandlers.date = {
+    update: function (element, valueAccessor) {
+        var value = valueAccessor();
+        var date = moment(value);
+        $(element).text(date.format("DD-MMM-YYYY"));
+    }
+};
+
 //var updateViewModel = function (targetObservableViewModel, sourceViewModel) {
 //    ko.mapping.fromJS(sourceViewModel, targetObservableViewModel);
 //};

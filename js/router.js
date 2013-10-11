@@ -35,8 +35,7 @@
         },
         {
             path: "#/settings",
-            callback: function (i) {
-                //swapPages($index, $settings);
+            callback: function (i) {                
                 $(".body").hide();
                 ko.applyBindings(settings.vm, $("#settings-page")[0]);//document.getElementById('settings-page')
                 $settings.show();
@@ -45,6 +44,7 @@
             path: "#/inspections",
             callback: function (i) {
                 $(".body").hide();
+
                 if (index.vm.selectedlocationId() === undefined || index.vm.selectedlocationId() === '') {
                     location.href = '#/';
                 } else {
@@ -55,6 +55,7 @@
                     inspections.vm.loadPage(index.vm.selectedlocationId());
                     $inspections.show();
                 }
+
             }
         }, {
             path: "#/support",
