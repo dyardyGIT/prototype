@@ -29,7 +29,8 @@
                                 <img src="img/VOLogoWhite_Sm.png" alt="CH2M HILL" border="0" class="logo" /></a>
                             <div class="hidden-desktop">
                                 <ul class="nav nav-pills">
-                                    <li class="active1"><a href="#/">Locations</a></li>                                    
+                                    <li class="active1"><a href="#/">Locations</a></li>     
+                                    <li><a href="#/settings">Settings</a></li>
                                 </ul>
                             </div>
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -121,6 +122,7 @@
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                                   <tbody data-bind="template: { name: 'names', foreach: items }">                                   
                             </table>
@@ -137,19 +139,34 @@
                                 <td>
                                     <a href="#" data-bind="click: $root.selectLocation">Review</a>
                                 </td>
+                                <td>
+                                    <a href="#" data-bind="click: $root.offline">Go Offline</a>
+                                </td>
                             </tr>
                         </script>
                     </div>                    
                 </section>
 
                 <!-- settings -->
-                <section id="settings-page" class="body"></section>
+                <section id="settings-page" class="body">
+
+                    <div class="row">
+
+                        <div class="span12">
+                            <h4>Settings page</h4>
+                            <div data-bind="text: message"></div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                </section>
 
                 <!-- inspections -->
                 <section id="inspections-page" class="body">
                     
-                    <!--<div id="inspectionsContent" style="display:none;">-->
-
                         <div class="row">
                             <div class="span3">
                                 <h4>Inspections</h4>
@@ -167,27 +184,17 @@
                                     <div class="row">
                                         <div class="span3 inspectionlist1">
                                             <div id="inspectionlist">
-                                                <ul class="nav nav-tabs nav-stacked" data-bind="foreach: activeItems">
+                                                <ul class="nav nav-tabs nav-stacked" data-bind="foreach: itemNames">
                                                     <!--<li data-bind="text: Name, click: $parent.selectInspection"></li>-->
                                                     <li class="font10"><a href="#"><span data-bind="text: Name, click: $parent.selectInspection"></span></a></li>
                                                 </ul>
                                             </div>
-
-                                            <!--<ul class="nav nav-tabs nav-stacked">
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="#">Profile</a></li>
-                                                <li><a href="#">Messages</a></li>
-                                            </ul>-->
-
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="span3">
-                                            <div class="addTopMargin">
-                                                <button class="btn btn-primary btn-mini pull-right" style="margin-left: 10px;margin-bottom:10px;" data-bind="click: $root.save">Save Changes</button>
+                                            <div class="addTopMargin">                                                
                                                 <button class="btn btn-primary btn-mini pull-right" data-bind="click: addNew">Add New Inspection</button>
-                                                
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -195,60 +202,65 @@
 
                                 <div class="span9">
                                     <div class="form-horizontal" data-bind="with: selectedInspection">
-
+                                        
                                         <div class="control-group">
                                             <label class="control-label" for="id_Name">Name</label>
                                             <div class="controls">
                                                 <input name="id_Name" type="text" class="input-xlarge" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />                                                
                                             </div>
                                         </div>
+
                                         <div class="control-group">
                                             <label class="control-label" for="id_Description">Description</label>
-                                            <div class="controls">                                                
-                                                <textarea rows="4" placeholder="Enter Description" class="input-xlarge"  data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }"></textarea>
+                                            <div class="controls">
+                                                <textarea rows="4" placeholder="Enter Description" class="input-xlarge" data-bind="value: Description, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }"></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="control-group">                                            
-                                            <div class="controls">                                                
-                                                Latitude: <span data-bind="text: Latitude"></span>
+                                        <div class="control-group">
+                                            <div class="controls">Latitude: <span data-bind="text: Latitude"></span>
                                                 &nbsp;&nbsp;&nbsp;
                                                 Longitude <span data-bind="text: Longitude"></span>
                                             </div>
-                                        </div>                                        
-                                        
+                                        </div>
+
                                         <div class="control-group">
                                             <label class="control-label">
-                                                <button class="btn btn-mini addBottomMargin" style="width:100px;" data-bind="click: $parent.getCurrentPosition">Geo Locate</button>
+                                                <button class="btn btn-mini addBottomMargin" style="width: 100px;" data-bind="click: $parent.getCurrentPosition">Geo Locate</button>
                                                 <br />
                                                 <div id="myLocation"></div>
                                             </label>
-                                            <div class="controls">                                                                          
-                                                <div id="map_canvas"></div>                                                
-                                            </div>
-                                        </div>                                        
-                                        <div class="control-group">                                            
-                                            <div class="control-label"><button class="btn  btn-mini" style="width:100px;" data-bind="click: $parent.capturePhoto">Capture Photo</button></div>
                                             <div class="controls">
-                                              <div data-bind="foreach: InspectionImages">                                                  
+                                                <div id="map_canvas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="control-label">
+                                                <button class="btn  btn-mini" style="width: 100px;" data-bind="click: $parent.capturePhoto">Capture Photo</button></div>
+                                            <div class="controls">
+                                                <div data-bind="foreach: InspectionImages">
                                                     <img id="myImage" height="60" width="60" data-bind="attr: { src: 'data:image/png;base64,' + ImageString() }" />
-                                               </div>
+                                                </div>
                                             </div>
-                                        </div>   
-                                        <div class="control-group">                                            
+                                        </div>
+                                        <div class="control-group">
                                             <div class="controls">
-                                                <br />
-                                                <button class="btn btn-mini btn-primary" data-bind="click: $parent.remove">Remove Inspection</button>    
+                                                <div style="margin-bottom:10px;">
+                                                    <button class="btn btn-primary btn-mini" data-bind="click: $parent.saveInspection">Save Changes</button>
+                                                    &nbsp;&nbsp;
+                                                    <button class="btn btn-mini btn-primary" data-bind="click: $parent.remove">Remove Inspection</button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-horizontal">
                                             <!--<label class="control-label">Image</label>-->
-                                            <div class="control-group">                                     
-                                                <div class="controls">                                                          
+                                            <div class="control-group">
+                                                <div class="controls">
                                                     <!--<button class="btn btn-primary btn-mini addBottomMargin" data-bind="click: $parent.sampleImage">Picture Save Test</button>-->
                                                 </div>
                                             </div>
-                                        </div>                                                                 
+                                        </div>
+
                                     </div>
                                                                   
                                 </div>
@@ -257,35 +269,13 @@
               
                     </div>
                     
-                    <!--</div>-->
-                    <!--<div class="span12" id="inspectionsWait" style="display:none;text-align:center">
-                        <img src="img/wait.gif" alt="Loading..." />
-
-                    </div>-->
-                    
             
 
                     <!--<h2>Debug</h2><pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->
                     <!--<pre data-bind="text: JSON.stringify(ko.toJS($data), null, 3)"></pre>-->
             </section>
 
-                 <!--   <div class="row">       
-
-                        <div class="span12" id="noresultsInspections" style="display:none;padding-bottom:4px;">        
-                            <div  class="content">
-                                No inspections matching this location
-                            </div>
-                        </div>
-
-                        <div class="span12" style="display: none;" id="loadingWindowInspections">
-                            <div class="text-center" style="width: 275px;">
-                                <img src="img/wait.gif" alt="Loading..." /></div>
-                        </div>
-
-                        
-
-
-                    </div>-->
+               
 
 
                 
@@ -469,6 +459,7 @@
                                             <li><a href="#/office">Office</a></li>-->
                                             <!--<li><a href="#/support">Support</a></li>
                                             <li><a href="#/emergency">Emergency</a></li>-->
+                                            <li><div id="online" style="margin-top:5px;margin-left:10px;">test</div></li>
                                         </ul>
                                     </div>
                                 </div>

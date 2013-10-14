@@ -3,17 +3,22 @@ var app = {
     loggedIn: false,
     username: '',
     password: '',
-    offline: false,    
+    //offline: false,
+    isConnected: true,
+    isHighSpeed: true,
+    internalInterval: '',
 
     getAccount: function(){
         var user, pass;
-        this.store.get('username', function (data) { user = data; });
-        this.store.get('password', function (data) { pass = data; });
-        if ((user !== "null" && user !== undefined) && (pass !== "null" && pass !== undefined)) {
-            this.username = user;
-            this.password = pass;
-            autoLogin(user, pass);
-        }        
+        if (app.isConnected && app.isHighSpeed) {
+            this.store.get('username', function (data) { user = data; });
+            this.store.get('password', function (data) { pass = data; });
+            if ((user !== "null" && user !== undefined) && (pass !== "null" && pass !== undefined)) {
+                this.username = user;
+                this.password = pass;
+                autoLogin(user, pass);
+            }
+        }
     },
 
     getToken: function (callback) {
@@ -63,6 +68,48 @@ var app = {
         callback('saved');
     },
 
+    notify: function (message) {
+        var title = "Prototype";
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
+    },
+
+    networkDetection: function () {
+        if (window.cordova) {
+
+            // as long as the connection type is not none,
+            // the device should have Internet access
+            if (navigator.network.connection.type !== Connection.NONE) {
+                isConnected = true;
+            }
+            // determine if this connection is high speed or not
+            switch (navigator.network.connection.type) {
+                case Connection.UNKNOWN:
+                case Connection.CELL_2G:
+                    isHighSpeed = false;
+                    break;
+                default:
+                    isHighSpeed = true;
+                    break;
+            }
+        }
+    },
+
+    onOnline: function() {
+        isConnected = true;
+        if (isConnected === true)
+            $('#online').text('Connected');
+        else
+            $('#online').text('Off Line');
+    },
+
+    onOffline: function() {
+        isConnected = false;
+    },
+
     initialize: function () {
         var self = this;
 
@@ -73,22 +120,21 @@ var app = {
             //app.server = 'https://webappsdev.ch2m.com/Directory';
         }
 
-        this.store = new LocalStorageStore(function () {
-            //self.showAlert('Store Initialized', 'Info');
-        });
+        this.store = new LocalStorageStore(function () { });
+            
+        this.networkDetection();
+
+        document.addEventListener("online", app.onOnline, false);
+        document.addEventListener("offline", app.onOffline, false);
+
+        //offline simulate
+        app.isConnected = false;
+
 
         this.getAccount();
-
-    },
-
-    notify: function (message) {
-        var title = "Prototype";
-        if (navigator.notification) {
-            navigator.notification.alert(message, null, title, 'OK');
-        } else {
-            alert(title ? (title + ": " + message) : message);
-        }
     }
+
+
 
 };
 

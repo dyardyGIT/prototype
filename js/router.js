@@ -37,7 +37,15 @@
             path: "#/settings",
             callback: function (i) {                
                 $(".body").hide();
-                ko.applyBindings(settings.vm, $("#settings-page")[0]);//document.getElementById('settings-page')
+                //ko.applyBindings(settings.vm, $("#settings-page")[0]);//document.getElementById('settings-page')
+
+                //ko.applyBindings(settings.vm, document.getElementById('settings-page'));//
+                //alert(settings.vm);
+                //var vm = new settings.ViewModel();
+                
+                //ko.applyBindings(vm, $("#settings-page")[0]);
+                ko.applyBindings(settings.vm, $("#settings-page")[0]);
+
                 $settings.show();
             }
         }, {
