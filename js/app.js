@@ -128,7 +128,7 @@ var app = {
         document.addEventListener("offline", app.onOffline, false);
 
         //offline simulate
-        app.isConnected = false;
+        //app.isConnected = false;
 
 
         this.getAccount();
