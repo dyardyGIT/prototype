@@ -67,7 +67,7 @@
                     }
                 });
             } else {
-
+                index.vm.items([]);
                 var data = app.getJson('locations', function (data) {
                     var obj = $.parseJSON(data);
                     $.each(obj, function (i, item) {

@@ -14,7 +14,17 @@
     <link href="css/app.css" rel="stylesheet" />
 </head>
 <body>
+    
     <div class="container">
+        <div class="span12" id="waitConainer">
+            <div style="text-align:center;margin-top:40px;">
+                <img src="img/wait.gif" alt="Loading..." />
+             </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="allpages" >
         
         
         <div class="row">
@@ -140,7 +150,7 @@
                                     <a href="#" data-bind="click: $root.selectLocation">Review</a>
                                 </td>
                                 <td>
-                                    <a href="#" data-bind="click: $root.offline">Go Offline</a>
+                                    <a href="#" data-bind="click: $root.offline, visible: app.isConnected">Go Offline</a>
                                 </td>
                             </tr>
                         </script>
@@ -206,7 +216,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="id_Name">Name</label>
                                             <div class="controls">
-                                                <input name="id_Name" type="text" class="input-xlarge" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />                                                
+                                                <input name="id_Name" type="text" placeholder="Inspection Name" class="input-xlarge" data-bind="value: Name, attr: { 'data-index': InspectionId }, event: { keyup: $root.onChange }" />                                                
                                             </div>
                                         </div>
 
@@ -246,8 +256,8 @@
                                         <div class="control-group">
                                             <div class="controls">
                                                 <div style="margin-bottom:10px;">
-                                                    <button class="btn btn-primary btn-mini" data-bind="click: $parent.saveInspection">Save Changes</button>
-                                                    &nbsp;&nbsp;
+                                                    <button class="btn btn-primary btn-mini" data-bind="click: $parent.saveInspection, visible: app.isConnected" style="margin-right:10px;">Save Changes</button>
+                                                    
                                                     <button class="btn btn-mini btn-primary" data-bind="click: $parent.remove">Remove Inspection</button>
                                                 </div>
                                             </div>

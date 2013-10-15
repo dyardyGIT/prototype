@@ -89,25 +89,34 @@ var app = {
             switch (navigator.network.connection.type) {
                 case Connection.UNKNOWN:
                 case Connection.CELL_2G:
-                    isHighSpeed = false;
+                    app.isHighSpeed = false;
                     break;
                 default:
-                    isHighSpeed = true;
+                    app.isHighSpeed = true;
                     break;
             }
+        }
+        if (app.isConnected === true){
+            $('#online').text('Connected ' + 'Highspeed:' + app.isHighSpeed);
+        } else{
+            $('#online').text('Off Line');
         }
     },
 
     onOnline: function() {
-        isConnected = true;
-        if (isConnected === true)
-            $('#online').text('Connected');
+        app.isConnected = true;
+        if (app.isConnected === true)
+            $('#online').text('Connected 1');
         else
-            $('#online').text('Off Line');
+            $('#online').text('Off Line 1');
     },
 
     onOffline: function() {
-        isConnected = false;
+        app.isConnected = false;
+    },
+
+    uniqueNumber: function(){
+        return new Date().valueOf();
     },
 
     initialize: function () {
@@ -122,14 +131,14 @@ var app = {
 
         this.store = new LocalStorageStore(function () { });
             
+        //offline simulate
+        app.isConnected = false;
+
+
         this.networkDetection();
 
         document.addEventListener("online", app.onOnline, false);
         document.addEventListener("offline", app.onOffline, false);
-
-        //offline simulate
-        //app.isConnected = false;
-
 
         this.getAccount();
     }
@@ -145,6 +154,9 @@ var app = {
 
     // Initialization
     function init() {
+
+        $('#allpages').hide();
+        //$('#waitConainer').show();
 
         app.initialize();
 
@@ -162,6 +174,8 @@ var app = {
             return false;
         });
 
+        $('#allpages').show();
+        $('#waitConainer').hide();
 
         //window.onerror = function (err, fn, ln) { alert("ERROR:" + err + ", " + fn + ":" + ln); };
     }

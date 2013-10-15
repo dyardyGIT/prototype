@@ -9,8 +9,10 @@
         msg: ko.observable('helo'),
         server: ko.observable(''),
         locationId: ko.observable(''),
-        selectedInspection: ko.observable(null)
+        selectedInspection: ko.observable(null),
+        lastSelectedInspection: ko.observable(null)
     };
+
 
     inspections.vm.activeItems = ko.computed(function () {
         if (inspections.vm.items().length === 0)
@@ -21,31 +23,43 @@
         });
     });
 
-    inspections.vm.saveInspection = function () {
+    //item is same as inspections.vm.selectedInspection()
+    inspections.vm.saveInspection = function (item) {
+
+        var id = item.InspectionId();
+        if (id > 0) {
+            var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {       //update name
+                return item.InspectionId() == id;
+            });
+            if (match !== null && match.InspectionId() !== '') {
+                match.Name(inspections.vm.selectedInspection().Name());
+            }
+        }
 
         if (app.isConnected && app.isHighSpeed) {
-            inspections.vm.save(function (data) {
-                //update name
-                var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
-                    return item.InspectionId() == data.Id;
-                });
-                if (match !== null && match.InspectionId() !== '') {
-                    match.Name(inspections.vm.selectedInspection().Name());
-                } else {
+            inspections.vm.save(function (data) {                                
+                if(id===-1) {
                     var newName = {                             //new one so add to array
                         InspectionId: ko.observable(data.Id),
-                        Name: ko.observable(inspections.vm.selectedInspection().Name())
+                        Name: ko.observable(item.Name())
                     }
                     inspections.vm.itemNames.push(newName);
                 }
+                inspections.vm.selectedInspection(null);
+                app.showAlert('Saved', 'Inspections');
             });
         } else {
             //save all items to offline cache
             var key = 'inspections_' + inspections.vm.locationId();            
             var data = ko.toJSON(inspections.vm.items)
-            app.saveJson(key, data, function () { });            
+            app.saveJson(key, data, function () {
+                inspections.vm.selectedInspection(null);
+            });
+
+
+
         }
-        app.showAlert('Saved', 'Inspections');
+        
     };    
     
     inspections.vm.save = function (callback) {        
@@ -84,12 +98,14 @@
         //Modified = 16
     };
 
-    inspections.vm.addNew = function () {        
+    inspections.vm.addNew = function () {
+
+        var uniqueId = app.uniqueNumber();
         var newItem = {
             "InspectionImages": [],
             "InspectionType": null,
             "Location": inspections.vm.locationId(),
-            "InspectionId": -1,
+            "InspectionId": uniqueId,
             "LocationId": 1,
             "InspectionTypeId": 1,
             "Latitude": 0,
@@ -107,23 +123,42 @@
         var recentlyAddedItem = inspections.vm.items()[count];        
         recentlyAddedItem.Modified(true);
         inspections.vm.selectedInspection(recentlyAddedItem);
+
+        //add item to names list
+        var newName = {                             //new one so add to array
+            InspectionId: ko.observable(uniqueId),
+            Name: ko.observable(recentlyAddedItem.Name())
+        }
+        inspections.vm.itemNames.push(newName);
+
     };
 
-    inspections.vm.remove = function (item) {                
+    inspections.vm.remove = function (item) {
+        var id = item.InspectionId();
+
         item.State(8);
         item.Removed(true);
         item.Modified(true);
-
-        inspections.vm.save(function (data) {
-            //update name list
-            var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
-                return item.InspectionId() == data.Id;
+        
+        if (app.isConnected && app.isHighSpeed) {
+            inspections.vm.save(function (data) {
+                inspections.vm.removeItemNames(id)
+                inspections.vm.selectedInspection(null);
             });
-            if (match !== null && match.InspectionId() !== '') {
-                inspections.vm.itemNames.remove(match);
-            }
-            inspections.vm.selectedInspection(null);            
-        })
+        } else {
+            inspections.vm.removeItemNames(id);
+            inspections.vm.selectedInspection(null);
+        }
+        inspections.vm.lastSelectedInspection(null);
+    };
+
+    inspections.vm.removeItemNames = function (id) {
+        var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
+            return item.InspectionId() == id;
+        });
+        if (match !== null && match.InspectionId() !== '') {
+            inspections.vm.itemNames.remove(match);
+        }
     };
 
     var mapping = {
@@ -227,11 +262,23 @@
 
         } else {
             //offline find in offline cache
+            if (inspections.vm.lastSelectedInspection() !== null) {
+                if (inspections.vm.lastSelectedInspection().InspectionId !== inspection.InspectionId()) {
+                    var namesMatch = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
+                        return item.InspectionId() == inspections.vm.selectedInspection().InspectionId();
+                    });
+                    if (namesMatch !== null) {
+                        namesMatch.Name(inspections.vm.lastSelectedInspection().Name());
+                    }
+                }
+            }
+
             var match = ko.utils.arrayFirst(inspections.vm.items(), function (item) {
                 return item.InspectionId() == inspection.InspectionId();
             });
             if (match !== null && match.InspectionId() !== '') {
                 inspections.vm.selectedInspection(match);
+                inspections.vm.lastSelectedInspection(match);
             }
         }
     };
@@ -393,8 +440,9 @@
     inspections.vm.loadPage = function (id) {
         
         inspections.vm.items([]);
-        inspections.vm.locationId(id);
-        //inspections.vm.getInspections(id);
+        inspections.vm.itemNames([]);
+
+        inspections.vm.locationId(id);        
         inspections.vm.getInspectionNames(id);
 
         
