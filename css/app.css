@@ -80,13 +80,13 @@ h4{
 
 }
 
-#inspectionlist{
+/*#inspectionlist{
     padding:5px;
-}
+}*/
 
 #inspectionlist ul{
     margin-left:0px;
-    padding-left:4px;
+    /*padding-left:4px;*/
     list-style-type:none;
 }
 
