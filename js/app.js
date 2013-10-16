@@ -132,7 +132,7 @@ var app = {
         this.store = new LocalStorageStore(function () { });
             
         //offline simulate
-        app.isConnected = false;
+        app.isConnected = true;
 
 
         this.networkDetection();

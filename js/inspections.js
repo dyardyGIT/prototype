@@ -9,59 +9,100 @@
         msg: ko.observable('helo'),
         server: ko.observable(''),
         locationId: ko.observable(''),
-        selectedInspection: ko.observable(null),
-        lastSelectedInspection: ko.observable(null)
+        selectedInspection: ko.observable(null),        
+        originalInspection: null
     };
 
+    //inspections.vm.items.prototype.toJSON = function () {
+    //    var copy = ko.toJS(this);
+    //    delete copy.full;
+    //    return copy;
+    //};
 
-    inspections.vm.activeItems = ko.computed(function () {
-        if (inspections.vm.items().length === 0)
-            return inspections.vm.items();
+    inspections.vm.activeItemNames = ko.computed(function () {
+        if (inspections.vm.itemNames().length === 0)
+            return inspections.vm.itemNames();
 
-        return ko.utils.arrayFilter(inspections.vm.items(), function (item) {
+        return ko.utils.arrayFilter(inspections.vm.itemNames(), function (item) {
             if (item.Removed() !== true) return true;
         });
     });
+
+
+    //inspections.vm.activeItems = ko.computed(function () {
+    //    if (inspections.vm.items().length === 0)
+    //        return inspections.vm.items();
+
+    //    return ko.utils.arrayFilter(inspections.vm.items(), function (item) {
+    //        if (item.Removed() !== true) return true;
+    //    });
+    //});
 
     //item is same as inspections.vm.selectedInspection()
     inspections.vm.saveInspection = function (item) {
 
         var id = item.InspectionId();
+        var newItem = false;
         if (id > 0) {
             var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {       //update name
                 return item.InspectionId() == id;
             });
-            if (match !== null && match.InspectionId() !== '') {
-                match.Name(inspections.vm.selectedInspection().Name());
+            if (match !== null && match.InspectionId() !== '') {                
+                newItem = false;
+            } else{
+                newItem = true;
             }
         }
 
         if (app.isConnected && app.isHighSpeed) {
             inspections.vm.save(function (data) {                                
-                if(id===-1) {
+                if(newItem) {
                     var newName = {                             //new one so add to array
                         InspectionId: ko.observable(data.Id),
-                        Name: ko.observable(item.Name())
+                        Name: ko.observable(item.Name()),
+                        Removed: ko.observable(false)
                     }
                     inspections.vm.itemNames.push(newName);
+                } else {
+                    match.Name(item.Name());
                 }
                 inspections.vm.selectedInspection(null);
                 app.showAlert('Saved', 'Inspections');
             });
         } else {
             //save all items to offline cache
-            var key = 'inspections_' + inspections.vm.locationId();            
-            var data = ko.toJSON(inspections.vm.items)
-            app.saveJson(key, data, function () {
+            inspections.vm.saveOffline(function () {
                 inspections.vm.selectedInspection(null);
+                inspections.vm.originalInspection = null;
+
+                //add item to names list
+                if (newItem) {
+                    var newName = {                             //new one so add to array
+                        InspectionId: ko.observable(id),
+                        Name: ko.observable(item.Name()),
+                        Removed: ko.observable(false)
+                    }
+                    inspections.vm.itemNames.push(newName);
+                } else {
+                    match.Name(item.Name());
+                }
             });
+        }        
+    };
 
-
-
-        }
-        
-    };    
+    var mappingSerialize = {
+        'ignore': ["__ko_mapping__"]
+    };
     
+    inspections.vm.saveOffline = function (callback) {
+        var key = 'inspections_' + inspections.vm.locationId();
+        //var data = ko.toJSON(inspections.vm.items)
+        var data = ko.mapping.toJSON(inspections.vm.items, mappingSerialize);
+        app.saveJson(key, data, function () {
+            callback();
+        });
+    };
+
     inspections.vm.save = function (callback) {        
         //var changedItems = ko.utils.arrayFilter(inspections.vm.items(), function (item) {
         //    if (item.Modified() === true) return true;
@@ -115,21 +156,16 @@
             "DateModified": null,
             "State": 4,
             "MapUrl": '',
-            "LatLng": ''
+            "LatLng": '',
+            "Modified": ko.observable(true),
+            "Removed": ko.observable(false),
         };
 
         var count = inspections.vm.items().length;
         inspections.vm.items.push(ko.mapping.fromJS(newItem, mapping));
         var recentlyAddedItem = inspections.vm.items()[count];        
-        recentlyAddedItem.Modified(true);
+        
         inspections.vm.selectedInspection(recentlyAddedItem);
-
-        //add item to names list
-        var newName = {                             //new one so add to array
-            InspectionId: ko.observable(uniqueId),
-            Name: ko.observable(recentlyAddedItem.Name())
-        }
-        inspections.vm.itemNames.push(newName);
 
     };
 
@@ -142,30 +178,40 @@
         
         if (app.isConnected && app.isHighSpeed) {
             inspections.vm.save(function (data) {
-                inspections.vm.removeItemNames(id)
-                inspections.vm.selectedInspection(null);
+                inspections.vm.removeItemNames(id)                
             });
         } else {
-            inspections.vm.removeItemNames(id);
-            inspections.vm.selectedInspection(null);
+            inspections.vm.removeItemNames(id);            
         }
-        inspections.vm.lastSelectedInspection(null);
+        inspections.vm.selectedInspection(null);
+        inspections.vm.originalInspection = null;
     };
 
-    inspections.vm.removeItemNames = function (id) {
+    inspections.vm.removeItemNames = function (id) {      
         var match = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
             return item.InspectionId() == id;
         });
-        if (match !== null && match.InspectionId() !== '') {
-            inspections.vm.itemNames.remove(match);
+        if (match !== null && match.InspectionId() !== '') {                
+            match.Removed(true);
         }
+        inspections.vm.saveOffline(function () {
+            app.notify('Saved', 'Offline');
+        });
     };
 
     var mapping = {
         create: function (options) {            
             var innerModel = ko.mapping.fromJS(options.data);
-            innerModel.Modified = ko.observable(false);
-            innerModel.Removed = ko.observable(false);
+            //innerModel.Modified = ko.observable();
+            //innerModel.Removed = ko.observable();
+            return innerModel;
+        }
+    };
+
+    var mappingItemNames = {
+        create: function (options) {
+            var innerModel = ko.mapping.fromJS(options.data);            
+            //innerModel.Removed = ko.observable();
             return innerModel;
         }
     };
@@ -185,7 +231,7 @@
                 success: function (data) {
                     inspections.vm.items([]);
                     if (data.length > 0) {
-                        ko.mapping.fromJS(data, {}, inspections.vm.itemNames);
+                        ko.mapping.fromJS(data, mappingItemNames, inspections.vm.itemNames);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -200,13 +246,16 @@
             var data = app.getJson(key, function (data) {
                 if(data.length>0){
                     var obj = $.parseJSON(data);
-                    $.each(obj, function (i, item) {
-                        var newName = {                             
-                            InspectionId: ko.observable(item.InspectionId),
-                            Name: ko.observable(item.Name)
-                        }
-                        inspections.vm.itemNames.push(newName);
-                    });
+
+                    ko.mapping.fromJS(obj, mappingItemNames, inspections.vm.itemNames);
+
+                    //$.each(obj, function (i, item) {
+                    //    var newName = {                             
+                    //        InspectionId: ko.observable(item.InspectionId),
+                    //        Name: ko.observable(item.Name)
+                    //    }
+                    //    inspections.vm.itemNames.push(newName);
+                    //});
 
                     //load all items
                     ko.mapping.fromJS(obj, mapping, inspections.vm.items);
@@ -262,23 +311,35 @@
 
         } else {
             //offline find in offline cache
-            if (inspections.vm.lastSelectedInspection() !== null) {
-                if (inspections.vm.lastSelectedInspection().InspectionId !== inspection.InspectionId()) {
-                    var namesMatch = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
-                        return item.InspectionId() == inspections.vm.selectedInspection().InspectionId();
-                    });
-                    if (namesMatch !== null) {
-                        namesMatch.Name(inspections.vm.lastSelectedInspection().Name());
-                    }
-                }
+            if (inspections.vm.selectedInspection() !== null) {
+                //revert
+                inspections.vm.selectedInspection().Name(inspections.vm.originalInspection.Name);
+                inspections.vm.selectedInspection().Description(inspections.vm.originalInspection.Description);
             }
+
+
+            //if (inspections.vm.lastSelectedInspection() !== null) {
+            //    if (inspections.vm.lastSelectedInspection().InspectionId !== inspection.InspectionId()) {
+            //        var namesMatch = ko.utils.arrayFirst(inspections.vm.itemNames(), function (item) {
+            //            return item.InspectionId() == inspections.vm.selectedInspection().InspectionId();
+            //        });
+            //        if (namesMatch !== null) {
+            //            namesMatch.Name(inspections.vm.lastSelectedInspection().Name());
+            //        }
+            //    }
+            //}
 
             var match = ko.utils.arrayFirst(inspections.vm.items(), function (item) {
                 return item.InspectionId() == inspection.InspectionId();
             });
             if (match !== null && match.InspectionId() !== '') {
-                inspections.vm.selectedInspection(match);
-                inspections.vm.lastSelectedInspection(match);
+
+                inspections.vm.originalInspection = {
+                    Name: match.Name(),
+                    Description: match.Description()
+                };
+
+                inspections.vm.selectedInspection(match);                             
             }
         }
     };
