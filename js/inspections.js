@@ -109,7 +109,8 @@
         //});
         //var d = ko.toJSON(changedItems);
 
-        var d = ko.toJSON(inspections.vm.selectedInspection);
+        //var d = ko.toJSON(inspections.vm.selectedInspection);
+        var d = ko.mapping.toJSON(inspections.vm.selectedInspection, mappingSerialize);
 
         ajaxLogin(app.server + "/Inspection/SaveInspection", "POST", {
             context: this,
